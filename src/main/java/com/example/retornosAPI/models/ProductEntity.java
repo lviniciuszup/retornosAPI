@@ -12,15 +12,18 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
+    private Integer quantity;
     private Double price;
+    private Categories categories;
 
-    public ProductEntity() {
-    }
-
-    public ProductEntity(Long id, String name, Double price) {
+    public ProductEntity(Long id, String name, Double price, String description, Integer quantity, Categories categories) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.description = description;
+        this.quantity = quantity;
+        this.categories = categories;
     }
 
     public void setId(Long id) {
@@ -35,6 +38,12 @@ public class ProductEntity {
         this.price = price;
     }
 
+    public void setDescription(String description) { this.description = description; }
+
+    public void setQuantity(Integer quantity) { this.quantity = quantity; }
+
+    public void setCategories(Categories categories){this.categories = categories;}
+
     public Long getId() {
         return id;
     }
@@ -47,5 +56,10 @@ public class ProductEntity {
         return price;
     }
 
+    public String getDescription() { return description; }
+
+    public Integer getQuantity() { return quantity; }
+
+    public Categories getCategories(){return categories;}
 
 }
