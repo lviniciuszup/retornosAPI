@@ -12,9 +12,9 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private Double price;
     private String description;
     private Integer quantity;
-    private Double price;
     private Categories categories;
 
     public ProductEntity(Long id, String name, Double price, String description, Integer quantity, Categories categories) {
