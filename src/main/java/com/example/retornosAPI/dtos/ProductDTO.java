@@ -1,5 +1,8 @@
 package com.example.retornosAPI.dtos;
 
+import com.example.retornosAPI.models.Categories;
+import com.example.retornosAPI.validations.GreaterOrEqualsToZero;
+import com.example.retornosAPI.validations.GreaterThanZero;
 import jakarta.validation.constraints.*;
 
 public record ProductDTO(
@@ -10,19 +13,17 @@ public record ProductDTO(
         @Size(min = 3, max = 100)
         String name,
         //Validacao do preco
-        @NotNull(message = "O campo preço não pode ser nulo")
-        @
+        @GreaterThanZero
         Double price,
-        @NotNull(message = "O campo nome não pode ser nulo")
-        @NotEmpty(message = "O nome não pode ser vázio")
-        @Size(min = 3, max = 100)
+        //Validacao da descricao
+        @NotNull(message = "O campo descrição não pode ser nulo")
+        @Size( max = 500)
         String description,
-        @NotNull(message = "O campo nome não pode ser nulo")
-        @Size(min = 3, max = 100)
+        //Validacao da quantidade
+        @GreaterOrEqualsToZero
         Integer quantity,
-        @NotNull(message = "O campo nome não pode ser nulo")
-        @NotEmpty(message = "O nome não pode ser vázio")
-        @Size(min = 3, max = 100)
+        //Validacao da categoria
+        @NotNull(message = "O campo categoria não pode ser nulo")
         Categories categories
         )
         {

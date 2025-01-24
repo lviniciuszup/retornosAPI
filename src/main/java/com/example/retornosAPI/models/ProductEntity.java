@@ -1,9 +1,6 @@
 package com.example.retornosAPI.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class ProductEntity {
@@ -15,6 +12,7 @@ public class ProductEntity {
     private Double price;
     private String description;
     private Integer quantity;
+    @Enumerated(EnumType.STRING)
     private Categories categories;
 
     public ProductEntity(Long id, String name, Double price, String description, Integer quantity, Categories categories) {

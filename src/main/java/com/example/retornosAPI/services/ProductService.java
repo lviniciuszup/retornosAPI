@@ -3,6 +3,7 @@ package com.example.retornosAPI.services;
 import com.example.retornosAPI.dtos.ProductDTO;
 import com.example.retornosAPI.models.ProductEntity;
 import com.example.retornosAPI.repositories.ProductRepository;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,10 +18,25 @@ public class ProductService {
         this.repository = repository;
     }
 
+
+    public boolean validateProduct(ProductEntity productEntity){
+        if (productEntity.getName() == null || productEntity.getName().isEmpty() ){
+            throw new IllegalArgumentException("O nome não pode ser nulo, nem vázio");
+        }
+        if (productEntity.getPrice() >0){
+            throw new IllegalArgumentException("O preço do produto não pode ser menor que zero");
+        }
+        if(productEntity.getDescription() == null || productEntity.getDescription().length() > 500){
+            throw new IllegalArgumentException("O campo descrição não pode ser nulo nem maior que 500 caracteres");
+        }
+        if (productEntity.getQuantity() >= 0){
+            throw new IllegalArgumentException("A quantidade de")
+        }
+    }
     public ProductDTO createProduct(ProductDTO productDTO) {
-        ProductEntity entity = new ProductEntity(null, productDTO.name(), productDTO.price());
+        ProductEntity entity = new ProductEntity(null, productDTO.name(), productDTO.price(), productDTO.description(), productDTO.quantity(), productDTO.categories());
         ProductEntity savedEntity = repository.save(entity);
-        return new ProductDTO(savedEntity.getId(), savedEntity.getName(), savedEntity.getPrice());
+        return new ProductDTO(savedEntity.getId(), savedEntity.getName(), savedEntity.getPrice(), );
     }
 
     public ProductDTO getProductById(Long id) {
